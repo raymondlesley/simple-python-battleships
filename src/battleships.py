@@ -21,17 +21,6 @@ class Battleships(object):
         self._player1.set_opponent(self._player2)
         self._player2.set_opponent(self._player1)
 
-    '''
-    def play(self, player, guess):
-        board = Board()
-        if player == self._player1 :
-            board = self._board2
-        elif player == self._player2 :
-            board = self._board1
-        
-        return board.play(guess)
-    '''
-
     def play_a_game(self):
         while True :
             self._player1.play()
@@ -42,7 +31,4 @@ class Battleships(object):
                 break
 
     def playing(self):
-        '''
-        TODO: get status from each player
-        '''
         return not self._player1.lost() and not self._player2.lost()

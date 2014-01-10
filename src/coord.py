@@ -39,3 +39,38 @@ class Coord(object):
         if (self.col > 9):
             C = "1" + chr(self.col - 10 + ord('A') - 1)
         return C + R
+
+"""
+Unit Tests
+"""
+import unittest
+from copy import copy
+
+class ShipTests(unittest.TestCase):
+
+    def testCoords(self):
+        rc1 = Coord(1, 1)
+        self.assertTrue(rc1 == Coord(1, 1), "Comparing Coord object with literal")
+        rc2 = Coord(1, 1)
+        self.assertTrue(rc1 == rc2, "Comparing identical Coord")
+        rc3 = Coord(1, 2)
+        self.assertFalse(rc1 == rc3, "Comparing different Coord")
+        rc4 = Coord(2, 1)
+        self.assertFalse(rc1 == rc4, "Comparing different Coord")
+        
+        rc5 = Coord("A1")
+        self.assertTrue(rc1 == rc5, "Comparing Coord(r, c) and Coord(RC)")
+        rc6 = Coord("B1")
+        self.assertTrue(rc3 == rc6, "Comparing Coord(r, c) and Coord(RC)")
+        
+        self.assertTrue(Coord(1, 1).ToRC() == "A1")
+        self.assertTrue(Coord(1, 2).ToRC() == "B1")
+        
+        rc7 = Coord("J10")
+        self.assertTrue(rc7 == Coord(10, 10))
+        self.assertTrue(rc7 == Coord("J10"))
+
+        
+if __name__ == "__main__":
+    #import sys;sys.argv = ['', 'Test.testShip']
+    unittest.main()

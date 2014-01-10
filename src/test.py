@@ -3,6 +3,16 @@ Created on 19 Dec 2013
 
 @author: L14202
 '''
+
+"""
+Dummy class - needed to pursuade PyDev to run this as a UnitTest...
+"""
+class Dummy(object):
+    pass
+
+"""
+Unit Tests
+"""
 import unittest
 from board import Board
 from coord import Coord
@@ -10,7 +20,7 @@ from copy import copy
 from player import Player
 from ship import Ship
 
-class Test(unittest.TestCase):
+class BattleshipTests(unittest.TestCase):
 
     def testObjects(self):
         s1 = Ship(Coord(1, 1), Coord(1, 2))
