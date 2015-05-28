@@ -1,0 +1,1 @@
+This simple console-based Battleships game is an exercise in learning Python.
