@@ -16,6 +16,7 @@ from coord import Coord
 from player import Player
 from ship import Ship
 
+
 print("Hello!")
 print("Let's play Battleships...")
 print("=========================================")

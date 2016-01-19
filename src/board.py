@@ -54,9 +54,11 @@ class Board:
 
     def fire(self, rc):
         for ship in self._ships :
-            if ship.fire(rc):
-                return True
+            result = ship.fire(rc)
+            if result != Ship.MISS:
+                return result
         self._grid[rc.row-1][rc.col-1] = self.MISS
+        return Ship.MISS
 
     def all_sunk(self):
         for ship in self._ships :

@@ -11,6 +11,13 @@ class Ship():
     classdocs
     '''
 
+    '''
+    Constants
+    '''
+    HIT = "hit"
+    MISS = "miss"
+    SUNK = "sunk"
+
     def __init__(self, rc1, rc2):
         '''
         Constructor
@@ -37,7 +44,11 @@ class Ship():
             if (rc not in self.hits):
                 self.hits.append(rc)
                 self.hit_count += 1
-        return hit
+        if hit:
+            return Ship.SUNK if self.sunk() else Ship.HIT
+        else:
+            return Ship.MISS
+                
     
     def sunk(self):
         return self.hit_count >= self.ship_length

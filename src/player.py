@@ -21,6 +21,9 @@ class Player(object):
         self._my_board = Board()
         self._their_board = Board()
     
+    def _clear_screen(self):
+        for line in range(100): print("")
+
     def set_opponent(self, opponent):
         self._opponent = opponent
 
@@ -42,6 +45,7 @@ class Player(object):
         self.setup_ship("Frigate", 3)
         self._my_board.draw_board()
         input("Press <enter>")
+        self._clear_screen()
 
     def play(self):
         print("Player {0}: ".format(self._number) + self._name)
@@ -51,14 +55,18 @@ class Player(object):
         self._their_board.draw_board()
         print("Fire torpedo!")
         guess = input("Enter the coordinates : ")
-        if (self._opponent.fire(Coord(guess))):
+        result = self._opponent.fire(Coord(guess))
+        if result == Ship.HIT:
             print(guess + " is a HIT!")
             self._their_board.record_hit(Coord(guess))
-        else:
+        elif result == Ship.SUNK:
+            print(guess + " has SUNK the ship!")
+            self._their_board.record_hit(Coord(guess))
+        else:  # Ship.MISS
             print(guess + " is a MISS")
             self._their_board.record_miss(Coord(guess))
         input("Hit <enter> to continue...")
-        for x in range(100): print("")
+        self._clear_screen()
             
     def fire(self, rc):
         return self._my_board.fire(rc)
